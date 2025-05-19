@@ -41,8 +41,19 @@
   <p>Это страница для дипломной работы курса SHDEVOPS-12 (17 октября 2024 — 4 июня 2025)</p>
 
   <div class="ip-box">
-    Ваш IP-адрес: <strong>{{ client_ip }}</strong>
+    Ваш IP-адрес: <strong id="client-ip"></strong>
   </div>
+
+  <script>
+    fetch(window.location.href, { method: 'HEAD' })
+      .then(res => {
+        const ip = res.headers.get('X-Your-IP');
+        document.getElementById('client-ip').textContent = ip || 'неизвестен';
+      })
+      .catch(err => {
+        document.getElementById('client-ip').textContent = 'ошибка';
+      });
+  </script>
 
   <div class="footer">Вячеслав Гайдар. 2025</div>
 </body>
