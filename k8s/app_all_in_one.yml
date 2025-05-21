@@ -25,8 +25,8 @@ spec:
         app: diploma-app
     spec:
       containers:
-        - name: diploma-app:latest
-          image: vyacheslavgaidar/diploma_app
+        - name: diploma-app
+          image: vyacheslavgaidar/diploma_app:latest
           ports:
             - containerPort: 80
 ---
