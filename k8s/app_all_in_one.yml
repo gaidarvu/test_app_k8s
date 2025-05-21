@@ -14,6 +14,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: diploma-app
+  version: "__TAG__" 
 spec:
   replicas: 1
   selector:
@@ -23,10 +24,11 @@ spec:
     metadata:
       labels:
         app: diploma-app
+        version: "__TAG__" 
     spec:
       containers:
         - name: diploma-app
-          image: vyacheslavgaidar/diploma_app:latest
+          image: vyacheslavgaidar/diploma_app:__TAG__
           ports:
             - containerPort: 80
 ---

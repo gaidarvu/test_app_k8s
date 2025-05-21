@@ -60,12 +60,18 @@ jobs:
           mkdir -p $HOME/.kube
           echo "${{ secrets.KUBECONFIG }}" | base64 -d > $HOME/.kube/config
 
-      - name: Replace image tag in manifest and deploy
+      # - name: Replace image tag in manifest and deploy
+      #   run: |
+      #     TAG=${GITHUB_REF##*/}
+      #     sed "s|image: ${IMAGE_NAME}:latest|image: ${IMAGE_NAME}:${TAG}|" k8s/app_all_in_one.yml | kubectl apply -f -
+      #   env:
+      #     IMAGE_NAME: ${{ env.IMAGE_NAME }}
+
+      - name: Deploy to Kubernetes
         run: |
           TAG=${GITHUB_REF##*/}
-          sed "s|image: ${IMAGE_NAME}:latest|image: ${IMAGE_NAME}:${TAG}|" k8s/app_all_in_one.yml | kubectl apply -f -
-        env:
-          IMAGE_NAME: ${{ env.IMAGE_NAME }}
+          sed "s|__TAG__|${TAG}|g" k8s/app_all_in_one.yml | kubectl apply -f -
+
 
       # - name: Deploy to Kubernetes
       #   run: |
