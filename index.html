@@ -44,10 +44,21 @@
     IP-адрес nginx-ingress: <strong id="client-ip"></strong>
   </div>
 
-  <script>
+  <!-- <script>
     fetch(window.location.href, { method: 'HEAD' })
       .then(res => {
         const ip = res.headers.get('X-Your-IP');
+        document.getElementById('client-ip').textContent = ip || 'неизвестен';
+      })
+      .catch(err => {
+        document.getElementById('client-ip').textContent = 'ошибка';
+      });
+  </script> -->
+
+  <script>
+    fetch("/app/api/ip")
+      .then(res => res.text())
+      .then(ip => {
         document.getElementById('client-ip').textContent = ip || 'неизвестен';
       })
       .catch(err => {
