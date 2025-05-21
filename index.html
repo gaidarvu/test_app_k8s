@@ -20,7 +20,7 @@
     h1 {
       font-size: 3rem;
     }
-    .ip-box {
+    .version-box {
       background-color: rgba(255, 255, 255, 0.1);
       margin-top: 2rem;
       padding: 1rem 2rem;
@@ -40,31 +40,9 @@
   <h1>Добро пожаловать!</h1>
   <p>Это страница для дипломной работы курса SHDEVOPS-12 (17 октября 2024 — 4 июня 2025)</p>
 
-  <div class="ip-box">
-    IP-адрес nginx-ingress: <strong id="client-ip"></strong>
+  <div class="version-box">
+    Версия приложения: <strong 1.0.7></strong>
   </div>
-
-  <!-- <script>
-    fetch(window.location.href, { method: 'HEAD' })
-      .then(res => {
-        const ip = res.headers.get('X-Your-IP');
-        document.getElementById('client-ip').textContent = ip || 'неизвестен';
-      })
-      .catch(err => {
-        document.getElementById('client-ip').textContent = 'ошибка';
-      });
-  </script> -->
-
-  <script>
-    fetch("/app/api/ip")
-      .then(res => res.text())
-      .then(ip => {
-        document.getElementById('client-ip').textContent = ip || 'неизвестен';
-      })
-      .catch(err => {
-        document.getElementById('client-ip').textContent = 'ошибка';
-      });
-  </script>
 
   <div class="footer">Вячеслав Гайдар. 2025</div>
 </body>
